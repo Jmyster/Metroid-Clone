@@ -2,12 +2,14 @@
  * Author: Jonathan Sullivan
  * Date: 4/9/2024
  * This script controls the players movement and health
+ * Update: 4/11/2024 - Added bullet shooting, a bullet shooting delay. Added Invincibility frames after being hit
  */ 
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,15 +20,23 @@ public class PlayerMovement : MonoBehaviour
     public float jumpPower;
 
     [Header("Health")]
-    public int health = 100;
-    public int lives = 3;
+    public int health = 99;
+    public TextMeshProUGUI healthTxt;
+    public bool invincible;
     [Header("Other")]
-    public float deathHeight; //The Y pos that the player will die if they go below    
     public int points;
+    public bool alive;
+    public GameObject invincibilityModel;
 
-    private GameObject pModel; 
+    [Header("Bullets")]
+    public GameObject regBullet;
+    public GameObject heavyBullet;
+    public float timeBetweenShots;
+    public bool heavyBulletUnlocked;
+    private bool canShoot = true;
+
+    private GameObject pModel;
     private Vector3 spawnPoint; // the spawn point of the player
-    private bool alive;
     private bool facingLeft;
 
     private void Awake()
@@ -40,23 +50,61 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        healthTxt.text = "Health: " + health;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < deathHeight) LoseLife();
-        if (lives <= 0) alive = false;
+        if (health <= 0) alive = false;
         Move();
         Jumping();
-        if (Input.GetMouseButtonDown(0)) { TurnPlayer(); }
+        if (Input.GetKeyDown(KeyCode.Return) && canShoot) StartCoroutine(ShootBullet());
     }
+    /// <summary>
+    /// turns the player 180 degrees so they are always facing where they are walking
+    /// </summary>
     public void TurnPlayer()
     {
-       pModel.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+        pModel.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
         if (facingLeft) facingLeft = false;
-        else facingLeft = true;       
+        else facingLeft = true;
+    }
+    /// <summary>
+    /// Fires a regular bullet or heavy bullet if they have it unlocked, then waits for timeBetweenShots before the player can shoot again
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ShootBullet()
+    {
+        canShoot = false;
+        if (heavyBulletUnlocked)
+        {
+            //heavyBullet.GetComponent<HeavyBullet>().isFacingLeft = facingLeft;
+            Instantiate(heavyBullet, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            regBullet.GetComponent<Bullet>().isFacingLeft = facingLeft;
+            Instantiate(regBullet, transform.position, Quaternion.identity);
+        }
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
+    }
+    /// <summary>
+    /// Blinks the invincibility shield on then sends it to the BlinkShieldOff void after 0.5 seconds
+    /// </summary>
+    public void BlinkShieldOn()
+    {
+        invincibilityModel.gameObject.SetActive(true);
+        Invoke(nameof(BlinkShieldOff), 0.5f);
+    }
+    /// <summary>
+    /// Blinks the invincibility shield off then sends it to the BlinkShieldOn void after 0.5 seconds IF the player is still invincible
+    /// </summary>
+    public void BlinkShieldOff()
+    {
+        invincibilityModel.gameObject.SetActive(false);
+        if(invincible) Invoke(nameof(BlinkShieldOn), 0.5f);
     }
     /// <summary>
     /// Makes the player take damage depending on the "damage" int
@@ -64,20 +112,26 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        //Show the player took damage
+        //if the player has invincibilty frames then they can't take damage
+        if (!invincible)
+        {
+            health -= damage;
+            healthTxt.text = "Health: " + health;
 
-        //if the player is out of health they lose a life
-        if (health <= 0) LoseLife();
+            //When the player takes damage they get invincibility frames
+            StartCoroutine(InvincibilityFrames());
+        }
     }
     /// <summary>
-    /// removes one life then respawns the player at spawn point
+    /// Makes the player invincible for five seconds
     /// </summary>
-    public void LoseLife()
+    /// <returns></returns>
+    IEnumerator InvincibilityFrames()
     {
-        lives--;
-        //respawn player, by setting the players position to the spawn point
-        transform.position = spawnPoint;
+        invincible = true;
+        BlinkShieldOn();
+        yield return new WaitForSeconds(5f);
+        invincible = false;
     }
     /// <summary>
     /// handles players jumping input
@@ -99,9 +153,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void MoveLeft()
     {
-        if(!facingLeft) TurnPlayer();
+        if (!facingLeft) TurnPlayer();
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        
+
     }
     /// <summary>
     /// Moves the player to the right
