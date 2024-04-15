@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7608706376928289243}
   - component: {fileID: 2763900260728820403}
   - component: {fileID: 7379909319645266114}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4842,7 +4842,7 @@ GameObject:
   - component: {fileID: 4486072534281167456}
   - component: {fileID: 7167523835628930547}
   - component: {fileID: 4532168627320401604}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Regular Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4949,6 +4949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  damage: 1
   lifeTime: 3
   isFacingLeft: 0
 --- !u!54 &4532168627320401604

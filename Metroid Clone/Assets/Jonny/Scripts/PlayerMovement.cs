@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         canShoot = false;
         if (heavyBulletUnlocked)
         {
-            //heavyBullet.GetComponent<HeavyBullet>().isFacingLeft = facingLeft;
+            heavyBullet.GetComponent<Bullet>().isFacingLeft = facingLeft;
             Instantiate(heavyBullet, transform.position, Quaternion.identity);
         }
         else
