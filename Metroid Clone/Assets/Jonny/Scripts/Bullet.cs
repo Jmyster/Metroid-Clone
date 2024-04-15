@@ -52,5 +52,10 @@ public class Bullet : MonoBehaviour
             other.GetComponent<EnemyTestScript>().EnemyTakeDamage(damage);
             Destroy(gameObject);
         }
+        if (other.CompareTag("Big Enemy"))
+        {
+            other.GetComponent<BigEnemyController>().EnemyTakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }
