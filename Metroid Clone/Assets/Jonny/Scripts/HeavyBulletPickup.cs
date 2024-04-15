@@ -10,8 +10,8 @@ public class HeavyBulletPickup : MonoBehaviour
     {
         transform.Rotate(rotateSpeed * Time.deltaTime, rotateSpeed * Time.deltaTime, 0);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        //if (other.GetComponent<PlayerMovement>() != null && other.CompareTag("Player")) other.GetComponent<PlayerMovement>().heavyBulletUnlocked = true; Destroy(transform.parent.gameObject);
+        if (other.gameObject.GetComponent<PlayerMovement>() != null && other.gameObject.CompareTag("Player")) other.gameObject.GetComponent<PlayerMovement>().heavyBulletUnlocked = true; Destroy(transform.parent.gameObject);
     }
 }

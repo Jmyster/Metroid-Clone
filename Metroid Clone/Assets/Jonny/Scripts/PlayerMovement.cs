@@ -122,6 +122,11 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(InvincibilityFrames());
         }
     }
+    public void HealPlayer(int healAmount)
+    {
+        health += healAmount;
+        healthTxt.text = "Health: " + health;
+    }
     /// <summary>
     /// Makes the player invincible for five seconds
     /// </summary>
