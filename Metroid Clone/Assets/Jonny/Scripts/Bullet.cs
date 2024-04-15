@@ -22,16 +22,16 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject,5f);
-        if(isFacingLeft) transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+        Destroy(gameObject, 5f);
+        if (isFacingLeft) transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isFacingLeft) 
+        if (isFacingLeft)
         {
-            rb.AddForce(-speed,0,0, ForceMode.Impulse);
+            rb.AddForce(-speed, 0, 0, ForceMode.Impulse);
             //transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
         else
@@ -49,9 +49,7 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             //damage enemy then destroy this gameobject
-
             other.GetComponent<EnemyTestScript>().EnemyTakeDamage(damage);
-
             Destroy(gameObject);
         }
     }
