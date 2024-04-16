@@ -8,7 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
@@ -20,8 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpPower;
 
     [Header("Health")]
+    public int maxHealth = 99;
     public int health = 99;
     public TextMeshProUGUI healthTxt;
+    public Slider healthBar;
     public bool invincible;
     [Header("Other")]
     public int points;
@@ -50,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthTxt.text = "Health: " + health;
+        healthTxt.text = health.ToString();
+        healthBar.value = health;
     }
 
     // Update is called once per frame
@@ -116,7 +120,8 @@ public class PlayerMovement : MonoBehaviour
         if (!invincible)
         {
             health -= damage;
-            healthTxt.text = "Health: " + health;
+            healthTxt.text = health.ToString();
+            healthBar.value = health;
 
             //When the player takes damage they get invincibility frames
             StartCoroutine(InvincibilityFrames());
@@ -125,7 +130,9 @@ public class PlayerMovement : MonoBehaviour
     public void HealPlayer(int healAmount)
     {
         health += healAmount;
-        healthTxt.text = "Health: " + health;
+        if (health > maxHealth) health = maxHealth;
+        healthTxt.text = health.ToString();
+        healthBar.value = health;
     }
     /// <summary>
     /// Makes the player invincible for five seconds
