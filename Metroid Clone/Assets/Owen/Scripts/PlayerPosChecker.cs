@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
@@ -18,11 +19,18 @@ public class NewBehaviourScript : MonoBehaviour
     {
 
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        enemyParent.GetComponent<BigEnemyController>().canMove = false;
+        enemyParent.GetComponent<BigEnemyController>().playerIn = false;
+
+    }
     private void OnTriggerStay(Collider other)
     {
         float distance;
         if (other.GetComponent<PlayerMovement>() != null)
         {
+            enemyParent.GetComponent<BigEnemyController>().canMove = true;
             distance = other.transform.position.x - transform.position.x;
             if (distance > 0)
             {
