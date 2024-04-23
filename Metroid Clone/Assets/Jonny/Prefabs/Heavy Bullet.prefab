@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.9
   damage: 3
-  lifeTime: 3
+  lifeTime: 5
   isFacingLeft: 0
 --- !u!54 &5437866838561273336
 Rigidbody:

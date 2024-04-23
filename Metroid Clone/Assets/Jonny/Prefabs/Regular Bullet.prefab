@@ -4950,7 +4950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
-  lifeTime: 3
+  lifeTime: 5
   isFacingLeft: 0
 --- !u!54 &4532168627320401604
 Rigidbody:

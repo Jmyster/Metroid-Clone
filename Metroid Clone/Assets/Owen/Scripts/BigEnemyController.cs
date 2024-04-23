@@ -25,13 +25,15 @@ public class BigEnemyController : MonoBehaviour
     void Update()
     {
         if (enemyHealth <= 0) Destroy(gameObject);
-        if (goLeft && canMove)
+        if (goLeft && canMove && !HitLeftWall())
         {
-            transform.position += Vector3.left * 1 * Time.deltaTime;
+            transform.position += Vector3.left * speed * Time.deltaTime;
+            print(canMove);
         }
-        else if (!goLeft && canMove)
+        else if (!goLeft && canMove && !HitRightWall())
         {
-            transform.position += Vector3.right * 1 * Time.deltaTime;
+            transform.position += Vector3.right * speed * Time.deltaTime;
+            print(canMove);
         }
 
     }
@@ -49,5 +51,43 @@ public class BigEnemyController : MonoBehaviour
     public void EnemyTakeDamage(int damage)
     {
         enemyHealth -= damage;
+    }
+    /// <summary>
+    /// Using a raycast, checks if the player is against a wall to the left
+    /// </summary>
+    /// <returns></returns>
+    private bool HitLeftWall()
+    {
+
+        bool hitLeftWall = false;
+        Vector3 rayCastOrigin = transform.position;
+        Vector3 originOffset = new Vector3(0, .5f, 0);
+        float playerWidth = 1f;
+
+        RaycastHit hit;
+        if (Physics.Raycast(rayCastOrigin, Vector2.left, out hit, playerWidth)) hitLeftWall = true;
+        if (Physics.Raycast(rayCastOrigin + originOffset, Vector2.left, out hit, playerWidth)) hitLeftWall = true;
+        if (Physics.Raycast(rayCastOrigin - originOffset, Vector2.left, out hit, playerWidth)) hitLeftWall = true;
+
+        return hitLeftWall;
+    }
+    /// <summary>
+    /// Using a raycast, checks if the player is against a wall to the right
+    /// </summary>
+    /// <returns></returns>
+    private bool HitRightWall()
+    {
+
+        bool hitRightWall = false;
+        Vector3 rayCastOrigin = transform.position;
+        Vector3 originOffset = new Vector3(0, .5f, 0);
+        float playerWidth = 1f;
+
+        RaycastHit hit;
+        if (Physics.Raycast(rayCastOrigin, Vector2.right, out hit, playerWidth)) hitRightWall = true;
+        if (Physics.Raycast(rayCastOrigin + originOffset, Vector2.right, out hit, playerWidth)) hitRightWall = true;
+        if (Physics.Raycast(rayCastOrigin - originOffset, Vector2.right, out hit, playerWidth)) hitRightWall = true;
+
+        return hitRightWall;
     }
 }

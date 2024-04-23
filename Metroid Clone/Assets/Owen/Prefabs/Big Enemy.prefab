@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7711039829613066324}
   - component: {fileID: 8238976873924140184}
   - component: {fileID: 7635307769113092484}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tooth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2648
+  m_VersionIndex: 2651
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1247,7 +1247,9 @@ GameObject:
   - component: {fileID: 4470136439947917336}
   - component: {fileID: 4690585523401744062}
   - component: {fileID: 8135736599373650025}
-  m_Layer: 0
+  - component: {fileID: 4061508052160101305}
+  - component: {fileID: 3169313946118018157}
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,10 +1338,45 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4061508052160101305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429955155299355363}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 1.5, z: 1}
+  m_Center: {x: 0, y: -0.25, z: 0}
+--- !u!114 &3169313946118018157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429955155299355363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8adf2e1d1167e1a40b1e219233845212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyParent: {fileID: 6043358369412992879}
+  goLeft: 0
 --- !u!1 &2854029225110620354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1391,7 @@ GameObject:
   - component: {fileID: 2535980484292129789}
   - component: {fileID: 3700140651923076196}
   - component: {fileID: 3973209184109883505}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tooth (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2468,7 +2505,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2648
+  m_VersionIndex: 2651
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2589,7 +2626,7 @@ GameObject:
   - component: {fileID: 3875558173700696511}
   - component: {fileID: 2251786282642514511}
   - component: {fileID: 9170658909811077302}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tooth (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3703,7 +3740,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2648
+  m_VersionIndex: 2651
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3824,7 +3861,7 @@ GameObject:
   - component: {fileID: 6044829203539697800}
   - component: {fileID: 8298246102322424612}
   - component: {fileID: 9007115609732951195}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tooth (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4938,7 +4975,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2648
+  m_VersionIndex: 2651
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5057,7 +5094,7 @@ GameObject:
   - component: {fileID: 8773689338575402842}
   - component: {fileID: 4505813194277376003}
   - component: {fileID: 6862628824763324884}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5206,7 +5243,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5226,8 +5263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cdac61bd214b341ae9d08ce893e88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  goingLeft: 0
+  canMove: 0
+  speed: 8
+  goLeft: 0
+  playerIn: 0
 --- !u!1 &6396498801112745587
 GameObject:
   m_ObjectHideFlags: 0
@@ -5242,7 +5281,7 @@ GameObject:
   - component: {fileID: 2924989540709019421}
   - component: {fileID: 362734849290738040}
   - component: {fileID: 8795810170797391783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tooth (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6356,7 +6395,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2648
+  m_VersionIndex: 2651
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6475,7 +6514,7 @@ GameObject:
   - component: {fileID: 5600441105209922400}
   - component: {fileID: 8450486202677930825}
   - component: {fileID: 5393707269748213127}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

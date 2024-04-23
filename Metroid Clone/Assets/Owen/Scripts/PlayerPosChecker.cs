@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerPosChecker : MonoBehaviour
 {
     public GameObject enemyParent;
     public bool goLeft;
@@ -19,11 +19,13 @@ public class NewBehaviourScript : MonoBehaviour
     {
 
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        enemyParent.GetComponent<BigEnemyController>().canMove = false;
-        enemyParent.GetComponent<BigEnemyController>().playerIn = false;
-
+        if (other.GetComponent<PlayerMovement>() != null)
+        {
+            enemyParent.GetComponent<BigEnemyController>().canMove = false;
+            enemyParent.GetComponent<BigEnemyController>().playerIn = false;
+        }
     }
     private void OnTriggerStay(Collider other)
     {
