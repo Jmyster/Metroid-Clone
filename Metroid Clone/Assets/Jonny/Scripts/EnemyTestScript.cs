@@ -1,7 +1,7 @@
 /*
  * Author: Jonathan Sullivan
  * Date: 4/11/2024
- * This is an example enemy collision and health script
+ * This controls the small enemy movement and health
  */
 using System.Collections;
 using System.Collections.Generic;

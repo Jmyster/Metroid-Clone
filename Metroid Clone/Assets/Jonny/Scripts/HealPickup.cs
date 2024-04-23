@@ -1,3 +1,8 @@
+/*
+ * Author: Jonathan Sullivan
+ * Date: 4/16/2024
+ * This script checks for player interaction with the Heal pickup and then heals the player the amount of health set in the inspector
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

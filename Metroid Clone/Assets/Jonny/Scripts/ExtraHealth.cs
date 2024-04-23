@@ -1,3 +1,8 @@
+/*
+ * Author: Jonathan Sullivan
+ * Date: 4/17/2024
+ * This script checks for player interaction on the ExtraHealthPickup, then adds 100 health to the player and heals the player to full
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,8 @@
+/*
+ * Author: Jonathan Sullivan
+ * Date: 4/22/2024
+ * This script checks for player interaction on the heavy bullet pickup, then unlocks it for the player. also spins
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

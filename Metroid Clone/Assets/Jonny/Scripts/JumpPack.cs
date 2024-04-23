@@ -1,3 +1,8 @@
+/*
+ * Author: Jonathan Sullivan
+ * Date: 4/22/2024
+ * This script checks for player interaction with JumpPack and then increases the jump power by the amount set in the inspector
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

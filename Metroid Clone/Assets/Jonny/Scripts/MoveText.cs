@@ -1,3 +1,8 @@
+/*
+ * Author: Jonathan Sullivan
+ * Date: 4/22/2024
+ * This script Moves the credit text up and shrinks the font then destroys it after 20 seconds
+ */
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
