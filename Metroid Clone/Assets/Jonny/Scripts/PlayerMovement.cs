@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (health <= 0) alive = false;
         Move();
         Jumping();
+        if (transform.position.y <= -3 && alive) { invincible = false; TakeDamage(9999); }
         if (Input.GetKeyDown(KeyCode.Return) && canShoot) StartCoroutine(ShootBullet());
     }
     /// <summary>

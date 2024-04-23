@@ -15,19 +15,25 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
 
+    public GameObject[] winConditionEnemies;
+
     public GameObject gameOverPanel;
     public GameObject activeGamePanel;
+    public GameObject winPanel;
     // Start is called before the first frame update
     void Start()
     {
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (activeGamePanel != null) activeGamePanel.SetActive(true);
+        if (winPanel != null) winPanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player != null && !player.GetComponent<PlayerMovement>().alive) GameOver();
+        if (player != null && !player.GetComponent<PlayerMovement>().alive && !WinConditionMet()) GameOver();
+        if (WinConditionMet())
+        { winPanel.SetActive(true); player.GetComponent<PlayerMovement>().alive = false; }
     }
     /// <summary>
     /// Enables GameOver Panel
@@ -51,10 +57,33 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
     /// <summary>
+    /// loads credits scene
+    /// </summary>
+    public void LoadCreditsScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+    /// <summary>
     /// quits application to desktop
     /// </summary>
     public void QuitGame()
     {
         Application.Quit();
+    }
+    /// <summary>
+    /// checks if the win condition has been met, IE: checks if all the enemies in the winconditionenemies array have been killed
+    /// </summary>
+    /// <returns></returns>
+    private bool WinConditionMet()
+    {
+        if (winConditionEnemies == null || winConditionEnemies.Length == 0) return true;
+        for (int i = 0; i < winConditionEnemies.Length; i++)
+        {
+            if (winConditionEnemies[i] != null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
