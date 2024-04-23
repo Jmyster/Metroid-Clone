@@ -1,3 +1,8 @@
+/*
+ * Author: Owen Johnson
+ * Date: 4/22/2024
+ * This script checks the players position for the big enemy
+ */
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,7 +24,7 @@ public class PlayerPosChecker : MonoBehaviour
     {
 
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)//when the player leaves the collider of the big enemy, it will stop moving and set these false
     {
         if (other.GetComponent<PlayerMovement>() != null)
         {
@@ -27,7 +32,7 @@ public class PlayerPosChecker : MonoBehaviour
             enemyParent.GetComponent<BigEnemyController>().playerIn = false;
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)//checks when the player is in the enemies collider 
     {
         float distance;
         if (other.GetComponent<PlayerMovement>() != null)

@@ -1,3 +1,8 @@
+/*
+ * Author: Owen Johnson
+ * Date: 4/22/2024
+ * This script controls the big enemy and its movement
+ */
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,14 +23,13 @@ public class BigEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartPos();
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()//checks for its health and destroys if it has 0 hp
     {
         if (enemyHealth <= 0) Destroy(gameObject);
-        if (goLeft && canMove && !HitLeftWall())
+        if (goLeft && canMove && !HitLeftWall())//controlls movement, checks if it can go left, if the players present, and if htere isnt a wall infornt of it.
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
             print(canMove);
@@ -37,18 +41,14 @@ public class BigEnemyController : MonoBehaviour
         }
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)//handles the player taking damage
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {
             collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(enemyDamage);
         }
     }
-    private void StartPos()
-    {
-        startPos = gameObject.transform.position;
-    }
-    public void EnemyTakeDamage(int damage)
+    public void EnemyTakeDamage(int damage)//determines ammount of damage to take
     {
         enemyHealth -= damage;
     }
@@ -56,7 +56,7 @@ public class BigEnemyController : MonoBehaviour
     /// Using a raycast, checks if the player is against a wall to the left
     /// </summary>
     /// <returns></returns>
-    private bool HitLeftWall()
+    private bool HitLeftWall() //performs raycast to stop from hitting a wall. 
     {
 
         bool hitLeftWall = false;
