@@ -11,11 +11,11 @@ public class HeavyBulletPickup : MonoBehaviour
 {
     public float rotateSpeed;
 
-    void Update()
+    void Update()// spins the pickup
     {
         transform.Rotate(rotateSpeed * Time.deltaTime, rotateSpeed * Time.deltaTime, 0);
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other) // checks for player interaction, picks up, and destroys itself
     {
         if (other.gameObject.GetComponent<PlayerMovement>() != null && other.gameObject.CompareTag("Player")) other.gameObject.GetComponent<PlayerMovement>().heavyBulletUnlocked = true; Destroy(transform.parent.gameObject);
     }

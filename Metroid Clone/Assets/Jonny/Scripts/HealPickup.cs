@@ -11,7 +11,7 @@ public class HealPickup : MonoBehaviour
 {
     public int healingAmount;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // heals player for "healingammount" on pickup, then is destroyed.
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {

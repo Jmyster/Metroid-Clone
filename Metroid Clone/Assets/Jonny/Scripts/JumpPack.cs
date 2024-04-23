@@ -13,7 +13,7 @@ public class JumpPack : MonoBehaviour
     /// Multiplies the players jump power by this number
     /// </summary>
     public float jumpPowerIncrease;
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)// if the player collides with the jump pack, thier jump force is increased and the pickup is destroyed.
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {

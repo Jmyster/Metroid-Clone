@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject activeGamePanel;
     public GameObject winPanel;
     // Start is called before the first frame update
-    void Start()
+    void Start()// handles the instancing of the scenes
     {
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (activeGamePanel != null) activeGamePanel.SetActive(true);
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()// checks if the player has won, or is dead.
     {
         if (player != null && !player.GetComponent<PlayerMovement>().alive && !WinConditionMet()) GameOver();
         if (WinConditionMet())
@@ -38,28 +38,28 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Enables GameOver Panel
     /// </summary>
-    public void GameOver()
+    public void GameOver() // if you die or the game is over, shows the game over pannel.
     {
         gameOverPanel.SetActive(true);
     }
     /// <summary>
     /// loads game scene
     /// </summary>
-    public void LoadGameScene()
+    public void LoadGameScene()//loads the specified scene.
     {
         SceneManager.LoadScene(1);
     }
     /// <summary>
     /// loads menu scene
     /// </summary>
-    public void LoadMenuScene()
+    public void LoadMenuScene()//loads the menu
     {
         SceneManager.LoadScene(0);
     }
     /// <summary>
     /// loads credits scene
     /// </summary>
-    public void LoadCreditsScene()
+    public void LoadCreditsScene()//loads the credits
     {
         SceneManager.LoadScene(2);
     }

@@ -22,21 +22,21 @@ public class EnemyTestScript : MonoBehaviour
 
     public bool goingLeft;
     // Start is called before the first frame update
-    void Start()
+    void Start()// sets left and right positions for enemy movement
     {
         leftPos = leftPoint.transform.position;
         rightPos = rightPoint.transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // destroys if enemy has 0 hp and updates movement function
     {
         if (enemyHealth <= 0) Destroy(gameObject);
         EnemyMovement();
     }
 
     //handles enemy movement
-    private void EnemyMovement()
+    private void EnemyMovement() // handles movement by toggling go left bool, and then transforming position untill the desired left / right position is reached.
     {
         if (goingLeft)
         {
@@ -61,14 +61,14 @@ public class EnemyTestScript : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // handles colision and the player taking damage
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {
             collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(enemyDamage);
         }
     }
-    public void EnemyTakeDamage(int damage)
+    public void EnemyTakeDamage(int damage) // handles the enemy dealing damage to the player.
     {
         enemyHealth -= damage;
     }

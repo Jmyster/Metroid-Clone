@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     [Header("direction")]
     public bool isFacingLeft;
     // Start is called before the first frame update
-    void Start()
+    void Start()// checks direction facing, and adjusts, gets the rigidbody 
     {
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, 5f);
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate()// controlls the momentum of the bullets by adding force upon instancing
     {
         if (isFacingLeft)
         {
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
             //transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)// handles collision and damaging enemies, destroys when hits nothing. 
     {
         if (other.CompareTag("Object"))
         {

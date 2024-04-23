@@ -13,13 +13,13 @@ public class MoveText : MonoBehaviour
     public float speed;
     public float fontDisapearSpeed = 1;
     // Start is called before the first frame update
-    void Start()
+    void Start()// destroys the game object at start
     {
         Destroy(gameObject,20f);
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()// moves the text up and scales it
     {
         transform.position += Vector3.up * speed * Time.deltaTime;
         gameObject.GetComponent<TextMeshProUGUI>().fontSize -= fontDisapearSpeed * Time.deltaTime;

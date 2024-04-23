@@ -24,13 +24,13 @@ public class CreditsControl : MonoBehaviour
     {
         
     }
-    IEnumerator SpawnCreditText()
+    IEnumerator SpawnCreditText()// spawns the text for the credits.
     {
         Instantiate(creditTxt, _parent.transform);
         yield return new WaitForSeconds(3.5f);
         LoopCredits();
     }
-    private void LoopCredits()
+    private void LoopCredits() // repeats the credits.
     {
         StartCoroutine(SpawnCreditText());
     }

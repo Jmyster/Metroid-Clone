@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 public class ExtraHealth : MonoBehaviour
 {
     public int increaseHealthAmount = 100;
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)// increases players max and current hp by "increaseHealthAmmount", then destroys it self.
     {
         if (collision.gameObject.GetComponent<PlayerMovement>() != null)
         {
