@@ -7,7 +7,7 @@ public class BigEnemyController : MonoBehaviour
 {
     int enemyDamage = 30;
     int enemyHealth = 10;
-    public bool canMove;
+    public bool canMove = false;
     public float speed;
 
     public bool goLeft;
@@ -33,6 +33,7 @@ public class BigEnemyController : MonoBehaviour
         {
             transform.position += Vector3.right * 1 * Time.deltaTime;
         }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
